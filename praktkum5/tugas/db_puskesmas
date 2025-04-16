@@ -1,0 +1,26 @@
+CREATE DATABASE IF NOT EXISTS dbpuskes;
+USE dbpuskes;
+
+CREATE TABLE IF NOT EXISTS kelurahan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    kode VARCHAR(10) NOT NULL UNIQUE,
+    nama VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS pasien (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    kode VARCHAR(20) NOT NULL UNIQUE,
+    nama VARCHAR(45) NOT NULL,
+    tmp_lahir VARCHAR(30) NOT NULL,
+    tgl_lahir DATE,
+    gender CHAR(1),
+    email VARCHAR(100),
+    alamat VARCHAR(100),
+    kelurahan_id INT,
+    FOREIGN KEY (kelurahan_id) REFERENCES kelurahan(id)
+);
+
+INSERT INTO kelurahan (kode, nama) VALUES 
+('KL001', 'Kelurahan A'),
+('KL002', 'Kelurahan B'),
+('KL003', 'Kelurahan C');
